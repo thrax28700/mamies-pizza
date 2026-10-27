@@ -215,17 +215,19 @@ p{margin:0}
 .panaches span{font-size:.95rem;color:var(--ink-soft)}
 @media (max-width:860px){.split{grid-template-columns:1fr}}
 .split--bar{align-items:start}
-.posters{display:flex;flex-wrap:wrap;gap:clamp(14px,2vw,24px);margin-top:10px}
+.posters{display:flex;flex-wrap:wrap;gap:16px;margin-top:10px}
 .posters__note{font-size:.85rem;color:var(--ink-soft)}
-.poster{width:140px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}
+.poster{width:auto;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}
 .poster__zoom{position:relative;display:block;padding:0;border:0;background:none;cursor:zoom-in;width:100%;border-radius:6px;transition:transform .2s ease}
 .poster__zoom:hover{transform:translateY(-3px)}
-.poster img{width:100%;height:auto;aspect-ratio:2/3;border-radius:6px;box-shadow:0 10px 22px -10px rgba(0,0,0,.55)}
+.poster img{height:160px;width:auto;max-width:100%;aspect-ratio:2/3;object-fit:cover;border-radius:6px;box-shadow:0 10px 22px -10px rgba(0,0,0,.55)}
 .poster__hint{display:none}
+.poster--wide img{aspect-ratio:600/434}
+.posters{align-items:flex-start}
 .poster__body h3{font-family:var(--f-display);font-style:italic;font-weight:800;font-size:.98rem;color:var(--basil-ink);line-height:1.2}
 .poster__body .tag-week{display:none}
 .poster__body p{display:none}
-@media (max-width:420px){.poster{width:calc(33.33% - 12px)}.posters{gap:12px}}
+@media (max-width:480px){.poster img{height:150px}.posters{gap:12px}}
 .lightbox{padding:0;border:0;background:transparent;max-width:min(94vw,720px);max-height:94vh;overflow:visible}
 .lightbox::backdrop{background:rgba(8,22,13,.88)}
 .lightbox img{display:block;max-width:100%;max-height:90vh;width:auto;height:auto;margin-inline:auto;border-radius:10px;box-shadow:0 0 0 3px var(--gold),0 30px 60px rgba(0,0,0,.7)}
@@ -404,8 +406,8 @@ p{margin:0}
       <h2>Le bar du village, <span class="script">version Mamies</span></h2>
       <p>Le café du matin, l'apéro entre voisins, une bière fraîche en attendant les pizzas : Isabelle et Mathieu vous accueillent au comptoir, et on y parle de tout sauf de régime.</p>
       <div class="posters">
-        <article class="poster">
-          <button class="poster__zoom" type="button" aria-label="Voir l'affiche des 3 panachés signature en grand"><img src="assets/panaches-affiche.webp" alt="Affiche des 3 panachés signature : le Castelpelotois au kiwi, le Chartrain banane-kiwi et le Cauchois à la violette" width="800" height="1200" loading="lazy"><span class="poster__hint">Agrandir</span></button>
+        <article class="poster poster--wide">
+          <button class="poster__zoom" type="button" aria-label="Voir l'affiche des 3 panachés signature en grand"><img src="assets/panaches-vignette.webp" data-full="assets/panaches-affiche.webp" alt="Affiche des 3 panachés signature : le Castelpelotois au kiwi, le Chartrain banane-kiwi et le Cauchois à la violette" width="600" height="434" loading="lazy"><span class="poster__hint">Agrandir</span></button>
           <div class="poster__body">
             <h3>Les 3 panachés signature</h3>
             <p>Castelpelotois · Chartrain · Cauchois</p>
@@ -668,7 +670,7 @@ const lightboxImg = lightbox.querySelector("img");
 document.querySelectorAll(".poster__zoom").forEach(btn => {
   btn.addEventListener("click", () => {
     const img = btn.querySelector("img");
-    lightboxImg.src = img.src;
+    lightboxImg.src = img.dataset.full || img.src;
     lightboxImg.alt = img.alt;
     lightbox.showModal();
   });

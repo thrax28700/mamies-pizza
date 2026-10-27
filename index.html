@@ -11,13 +11,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@500;700&family=Alegreya:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Kaushan+Script&family=Playfair+Display:ital,wght@0,800;0,900;1,700;1,800&display=swap">
 <style>
-/* Mise en page : le décor de la carte affichée au Relais — cadre en planches de bois, parchemin, olives et tomates, nappe vichy.
+/* Mise en page : thème italien — drapeau en accueil, bandeaux vert basilic en toile, parchemin, olives et tomates, nappe vichy.
    Le contenu se lit toujours sur du papier crème ; les motifs restent autour. */
 :root{
-  --wood:#74401f;
-  --wood-deep:#2c170b;
+  --verde:#0f5a32;
+  --verde-deep:#0a3a21;
   --paper-edge:rgba(150,95,35,.24);
-  --grain-wood:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='520' height='520'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.006 0.22' numOctaves='4' seed='11' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.12 0 0 0 0 0.05 0 0 0 0 0.01 0 0 0 1.1 -0.35'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
   --grain-paper:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.28 0 0 0 0 0.1 0 0 0 0.55 -0.18'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
   --paper:#fbf4e2;
   --paper-2:#f2e4c2;
@@ -45,7 +44,7 @@
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:76px}
 body{margin:0;background:var(--paper) var(--grain-paper);color:var(--ink);font-family:var(--f-body);font-size:1.0625rem;line-height:1.6;-webkit-font-smoothing:antialiased}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--wood-deep)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--verde-deep)}
 img{max-width:100%;display:block}
 a{color:inherit}
 h1,h2,h3{margin:0;text-wrap:balance;line-height:1.1}
@@ -56,18 +55,18 @@ p{margin:0}
 .band{padding-block:clamp(56px,8vw,100px)}
 
 /* ---- motifs ---- */
-.wood{
+.verde{
   position:relative;overflow:hidden;isolation:isolate;
-  background-color:var(--wood);
+  background-color:var(--verde);
   background-image:
-    radial-gradient(ellipse 120% 90% at 50% 50%,transparent 45%,rgba(20,8,2,.6) 100%),
-    repeating-linear-gradient(180deg,transparent 0 136px,rgba(25,10,3,.6) 136px 138px,rgba(255,214,160,.1) 138px 140px),
-    var(--grain-wood),
-    linear-gradient(180deg,#8a5229,#6e3c1d 50%,#7d4522);
-  background-size:auto,auto,520px 520px,auto;
+    radial-gradient(ellipse 120% 90% at 50% 50%,transparent 50%,rgba(0,20,8,.45) 100%),
+    repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 2px,transparent 2px 5px),
+    repeating-linear-gradient(90deg,rgba(0,0,0,.05) 0 2px,transparent 2px 5px),
+    var(--grain-paper);
   color:var(--on-dark);
 }
-.wood > .wrap{position:relative;z-index:1}
+.verde > .wrap{position:relative;z-index:1}
+.verde::before{content:"";position:absolute;left:0;right:0;top:0;height:6px;background:linear-gradient(90deg,#0b8a47 0 33.33%,#fbf6ea 33.33% 66.66%,#cd212a 66.66%)}
 /* accueil : le drapeau italien en toile, avec ses plis */
 .italia{position:relative;overflow:hidden;color:var(--ink);background-color:#fbf6ea;background-image:repeating-linear-gradient(90deg,rgba(0,0,0,0) 0 70px,rgba(0,0,0,.07) 110px,rgba(0,0,0,0) 150px,rgba(255,255,255,.08) 190px,rgba(0,0,0,0) 230px),var(--grain-paper),linear-gradient(90deg,#0b8a47 0 33.33%,#fbf6ea 33.33% 66.66%,#cd212a 66.66%)}
 .italia > .wrap{position:relative;z-index:1}
@@ -113,7 +112,7 @@ p{margin:0}
 .btn--line{border-color:currentColor;color:var(--tomato-ink);background:transparent}
 
 /* ---- navigation ---- */
-.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--wood-deep) var(--grain-wood);color:var(--on-dark);border-bottom:3px solid transparent;border-image:linear-gradient(90deg,#1f8a43 0 33.3%,#f6ecd2 33.3% 66.6%,#c8202b 66.6%) 1}
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--verde-deep) var(--grain-paper);color:var(--on-dark);border-bottom:3px solid transparent;border-image:linear-gradient(90deg,#1f8a43 0 33.3%,#f6ecd2 33.3% 66.6%,#c8202b 66.6%) 1}
 .nav .wrap{display:flex;align-items:center;gap:18px;min-height:64px}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;min-width:0}
 .brand img{width:44px;height:44px;border-radius:50%;box-shadow:0 0 0 2px var(--gold)}
@@ -275,7 +274,7 @@ p{margin:0}
 .reserve-head p{color:var(--ink-soft);max-width:52ch}
 
 /* ---- pied de page ---- */
-.footer{background:var(--wood-deep) var(--grain-wood);color:var(--on-dark)}
+.footer{background:var(--verde-deep) var(--grain-paper);color:var(--on-dark)}
 .footer .wrap{display:flex;flex-wrap:wrap;gap:24px 48px;justify-content:space-between;align-items:flex-start;padding-block:40px}
 .footer .brand span{font-size:1.7rem}
 .footer p,.footer li{font-size:.95rem;opacity:.88}
@@ -367,7 +366,7 @@ p{margin:0}
 </section>
 
 <!-- ====== LA CARTE ====== -->
-<section class="band wood" id="carte">
+<section class="band verde" id="carte">
   <svg class="deco deco--tl" aria-hidden="true"><use href="#i-branche"/></svg>
   <svg class="deco deco--br" aria-hidden="true"><use href="#i-branche"/></svg>
   <div class="wrap">
@@ -460,7 +459,7 @@ p{margin:0}
 </dialog>
 
 <!-- ====== LA FAMILLE ====== -->
-<section class="band wood" id="famille">
+<section class="band verde" id="famille">
   <svg class="deco deco--tl" aria-hidden="true"><use href="#i-branche"/></svg>
   <svg class="deco deco--br" aria-hidden="true"><use href="#i-branche"/></svg>
   <div class="wrap family">

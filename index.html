@@ -1,0 +1,652 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mamies Pizza</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Mamies Pizza au Relais des Mamies Gourmandes, La Chapelotte (18) : pizzas artisanales et tagliatelles, sur place ou à emporter, sur réservation. Bar de village et panachés signature.">
+<link rel="icon" href="assets/mamies.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@500;700&family=Alegreya:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Kaushan+Script&family=Playfair+Display:ital,wght@0,800;0,900;1,700;1,800&display=swap">
+<style>
+/* Mise en page : bandeaux alternés tartan vert / papier crème / nappe vichy, comme la carte affichée au Relais.
+   Le contenu se lit toujours sur du papier crème ; les motifs restent autour. */
+:root{
+  --tartan:#173f27;
+  --tartan-deep:#0e2a19;
+  --paper:#fbf4e2;
+  --paper-2:#f2e4c2;
+  --ink:#2a1c12;
+  --ink-soft:#6a5440;
+  --basil:#1d5a31;        /* fond des pastilles « à emporter » */
+  --tomato:#b4202b;       /* fond des pastilles « sur place » */
+  --basil-ink:#1d5a31;    /* vert pour du texte sur papier */
+  --tomato-ink:#a81d27;   /* rouge pour du texte sur papier */
+  --gold:#b8913f;
+  --on-dark:#f6ecd2;
+  --check-base:#ffffff;
+  --check-red:rgba(186,26,36,.52);
+  --rule:rgba(42,28,18,.18);
+  --wa:#1f7a45;
+
+  --f-script:"Kaushan Script","Brush Script MT",cursive;
+  --f-display:"Playfair Display",Georgia,"Times New Roman",serif;
+  --f-body:"Alegreya",Georgia,"Times New Roman",serif;
+  --f-label:"Alegreya Sans SC","Alegreya Sans","Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#261c14;--paper-2:#32251a;--ink:#f3e7cc;--ink-soft:#c5ae8b;
+    --basil-ink:#86c796;--tomato-ink:#f2858a;--gold:#d2ad5c;
+    --check-base:#3b2b21;--check-red:rgba(176,30,38,.55);--rule:rgba(243,231,204,.16);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#261c14;--paper-2:#32251a;--ink:#f3e7cc;--ink-soft:#c5ae8b;
+  --basil-ink:#86c796;--tomato-ink:#f2858a;--gold:#d2ad5c;
+  --check-base:#3b2b21;--check-red:rgba(176,30,38,.55);--rule:rgba(243,231,204,.16);
+  color-scheme:dark;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:1.0625rem;line-height:1.6;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--tartan-deep)}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{margin:0;text-wrap:balance;line-height:1.1}
+p{margin:0}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:4px}
+
+.wrap{max-width:1220px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.band{padding-block:clamp(56px,8vw,100px)}
+
+/* ---- motifs ---- */
+.tartan{
+  background-color:var(--tartan);
+  background-image:
+    repeating-linear-gradient(90deg,transparent 0 26px,rgba(0,0,0,.26) 26px 54px,transparent 54px 66px,rgba(196,34,40,.55) 66px 69px,transparent 69px 92px,rgba(255,240,200,.14) 92px 94px,transparent 94px 132px),
+    repeating-linear-gradient(0deg,transparent 0 26px,rgba(0,0,0,.26) 26px 54px,transparent 54px 66px,rgba(196,34,40,.55) 66px 69px,transparent 69px 92px,rgba(255,240,200,.14) 92px 94px,transparent 94px 132px);
+  color:var(--on-dark);
+}
+.gingham{
+  background-color:var(--check-base);
+  background-image:linear-gradient(90deg,var(--check-red) 50%,transparent 50%),linear-gradient(var(--check-red) 50%,transparent 50%);
+  background-size:30px 30px;
+}
+.gingham-strip{height:18px;background-color:var(--check-base);background-image:linear-gradient(90deg,var(--check-red) 50%,transparent 50%),linear-gradient(var(--check-red) 50%,transparent 50%);background-size:18px 18px}
+.tricolore{height:6px;width:min(260px,60%);margin-inline:auto;border-radius:3px;background:linear-gradient(90deg,#1f8a43 0 33.3%,#fff 33.3% 66.6%,#c8202b 66.6%);box-shadow:0 0 0 1px rgba(0,0,0,.12)}
+
+/* ---- papier, rubans, pastilles ---- */
+.paper{background:var(--paper);color:var(--ink);border-radius:14px;box-shadow:0 0 0 2px var(--gold),0 0 0 7px var(--paper),0 0 0 8px rgba(184,145,63,.55),0 26px 50px -24px rgba(0,0,0,.7)}
+.ribbon{display:inline-block;font-family:var(--f-display);font-style:italic;font-weight:800;color:#fff;background:var(--basil);padding:.18em .95em .22em;clip-path:polygon(0 10%,4% 0,100% 6%,97% 50%,100% 94%,3% 100%,1.5% 50%)}
+.banner{display:inline-block;font-family:var(--f-display);font-weight:900;text-transform:uppercase;letter-spacing:.02em;color:#fff;background:var(--tomato);padding:.25em 1.1em .3em;font-size:clamp(1.55rem,4.2vw,2.7rem);clip-path:polygon(1% 12%,6% 0,96% 5%,100% 18%,98% 52%,100% 86%,93% 100%,4% 95%,0 82%,2% 48%);text-shadow:0 2px 0 rgba(0,0,0,.25)}
+.chips{display:flex;gap:6px;flex:none}
+.chip{display:grid;place-items:center;min-width:3.6rem;padding:.2rem .45rem;border-radius:7px;color:#fff;font-family:var(--f-display);font-weight:800;font-size:1.15rem;line-height:1.3;font-variant-numeric:tabular-nums;box-shadow:inset 0 -2px 0 rgba(0,0,0,.22)}
+.chip--emp{background:var(--basil)}
+.chip--sur{background:var(--tomato)}
+.chip small{display:block;font-family:var(--f-label);font-weight:500;font-size:.66rem;letter-spacing:.06em;opacity:.92}
+.medal{display:grid;place-items:center;width:2.3rem;height:2.3rem;border-radius:50%;flex:none;background:var(--tomato);color:#fff;font-family:var(--f-display);font-weight:900;font-size:1.15rem;box-shadow:0 0 0 2px var(--paper),0 0 0 3.5px var(--tomato)}
+.label{font-family:var(--f-label);font-weight:700;letter-spacing:.09em;font-size:.82rem}
+.olive{width:84px;height:30px;color:#4d6b2a;flex:none}
+.olive--flip{transform:scaleX(-1)}
+.section-head{display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;margin-bottom:clamp(32px,5vw,52px)}
+.section-head .row{display:flex;align-items:center;gap:12px;justify-content:center;max-width:100%}
+.section-head p{max-width:58ch;color:var(--ink-soft)}
+.script{font-family:var(--f-script);font-weight:400}
+
+/* ---- boutons ---- */
+.btn{display:inline-flex;align-items:center;gap:.55em;font-family:var(--f-label);font-weight:700;letter-spacing:.05em;font-size:1rem;text-decoration:none;padding:.8em 1.3em;border-radius:999px;border:2px solid transparent;cursor:pointer;transition:transform .15s ease,box-shadow .15s ease}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 20px -10px rgba(0,0,0,.5)}
+.btn svg{width:1.25em;height:1.25em;flex:none}
+.btn--wa{background:var(--wa);color:#fff}
+.btn--red{background:var(--tomato);color:#fff}
+.btn--line{border-color:currentColor;color:var(--tomato-ink);background:transparent}
+
+/* ---- navigation ---- */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--tartan-deep);color:var(--on-dark);border-bottom:3px solid transparent;border-image:linear-gradient(90deg,#1f8a43 0 33.3%,#f6ecd2 33.3% 66.6%,#c8202b 66.6%) 1}
+.nav .wrap{display:flex;align-items:center;gap:18px;min-height:64px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;min-width:0}
+.brand img{width:44px;height:44px;border-radius:50%;box-shadow:0 0 0 2px var(--gold)}
+.brand span{font-family:var(--f-script);font-size:1.45rem;line-height:1;white-space:nowrap}
+.nav ul{display:flex;gap:4px;list-style:none;margin:0 0 0 auto;padding:0}
+.nav ul a{display:block;padding:.45em .75em;border-radius:6px;text-decoration:none;font-family:var(--f-label);font-weight:700;letter-spacing:.06em;font-size:.95rem}
+.nav ul a:hover{background:rgba(255,255,255,.1)}
+.nav .btn{padding:.55em 1em;font-size:.92rem}
+@media (max-width:900px){.nav ul{display:none}.nav .btn{margin-left:auto}}
+@media (max-width:420px){.brand span{font-size:1.2rem}.nav .btn span{display:none}}
+
+/* ---- accueil ---- */
+.hero{position:relative;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,5vw,64px);align-items:center;padding-block:clamp(40px,7vw,88px)}
+.sign{padding:clamp(26px,4vw,46px) clamp(20px,4vw,44px);text-align:center;display:flex;flex-direction:column;gap:14px}
+.sign__kicker{font-family:var(--f-display);font-style:italic;font-weight:800;color:var(--tomato-ink);font-size:clamp(1.15rem,2.4vw,1.6rem)}
+.sign__title{font-family:var(--f-script);font-weight:400;font-size:clamp(3.6rem,10vw,7rem);line-height:.92;letter-spacing:-.01em}
+.sign__title .m{color:var(--tomato-ink)}
+.sign__title .p{color:var(--basil-ink)}
+.sign__sub{font-family:var(--f-display);font-weight:900;font-size:clamp(1.35rem,3vw,2.05rem)}
+.sign__meta{color:var(--ink-soft);font-size:1.05rem}
+.sign__meta strong{color:var(--ink)}
+.cta{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:6px}
+
+.weekly{position:relative;margin:0}
+.weekly__frame{background:var(--paper);padding:12px 12px 0;border-radius:6px;transform:rotate(1.6deg);box-shadow:0 30px 60px -26px rgba(0,0,0,.8)}
+.weekly__frame img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:3px}
+.weekly__cap{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:14px 6px 16px;color:var(--ink)}
+.weekly__cap h3{font-family:var(--f-display);font-style:italic;font-weight:800;font-size:1.55rem;color:var(--basil-ink)}
+.weekly__cap p{font-size:.95rem;color:var(--ink-soft);max-width:34ch}
+.stamp{position:absolute;top:-22px;left:-14px;z-index:2;width:118px;height:118px;border-radius:50%;display:grid;place-items:center;text-align:center;background:var(--tomato);color:#fff;transform:rotate(-12deg);box-shadow:0 0 0 4px #fff,0 0 0 6px var(--tomato),0 14px 24px -10px rgba(0,0,0,.6);animation:stamp .6s cubic-bezier(.2,1.6,.4,1) .2s both}
+.stamp span{font-family:var(--f-label);font-weight:700;letter-spacing:.08em;font-size:.72rem;line-height:1.2}
+.stamp b{display:block;font-family:var(--f-script);font-weight:400;font-size:1.45rem;letter-spacing:0;line-height:1}
+@keyframes stamp{from{transform:rotate(-30deg) scale(.6)}to{transform:rotate(-12deg) scale(1)}}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr}.weekly{max-width:560px;margin-inline:auto;width:100%}.stamp{left:-6px;width:100px;height:100px}}
+
+/* ---- les deux chouchous ---- */
+.feats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(22px,4vw,40px)}
+.feat{display:flex;flex-direction:column;overflow:hidden;padding:0}
+.feat__img{position:relative}
+.feat__img img{width:100%;aspect-ratio:13/10;object-fit:cover;border-radius:14px 14px 0 0}
+.feat__img .medal{position:absolute;left:16px;bottom:-20px;width:3rem;height:3rem;font-size:1.4rem}
+.feat__body{display:flex;flex-direction:column;gap:12px;padding:30px clamp(18px,3vw,28px) 26px;flex:1}
+.feat__name{font-size:clamp(1.5rem,3vw,2rem);align-self:flex-start}
+.feat__ing{font-size:1.08rem}
+.feat__foot{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:auto;padding-top:10px;border-top:1px dashed var(--rule)}
+.feat__foot .chip{min-width:4.6rem;font-size:1.35rem}
+.feat__foot .btn{padding:.6em 1em;font-size:.92rem}
+.tag-week{display:inline-flex;align-items:center;gap:6px;font-family:var(--f-label);font-weight:700;letter-spacing:.06em;font-size:.78rem;color:#fff;background:var(--tomato);padding:.2em .7em;border-radius:999px;vertical-align:middle}
+@media (max-width:760px){.feats{grid-template-columns:1fr}}
+
+/* ---- la carte ---- */
+.menu{padding:clamp(22px,4vw,46px) clamp(14px,3.5vw,40px)}
+.menu__cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 clamp(20px,3vw,40px)}
+.menu__col{min-width:0}
+.menu__col + .menu__col{border-left:1px solid var(--rule);padding-left:clamp(20px,3vw,40px)}
+.menu__head{display:flex;justify-content:flex-end;gap:6px;padding-bottom:8px}
+.menu__head span{min-width:3.6rem;text-align:center;font-family:var(--f-label);font-weight:700;font-size:.74rem;letter-spacing:.04em;color:#fff;padding:.15em .3em;border-radius:5px}
+.menu__head .e{background:var(--basil)}
+.menu__head .s{background:var(--tomato)}
+.item{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center;padding:12px 0;border-bottom:1px dashed var(--rule)}
+.item:last-child{border-bottom:0}
+.item h3{font-family:var(--f-display);font-style:italic;font-weight:800;font-size:1.28rem;color:var(--basil-ink);display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px}
+.item p{font-size:.98rem;line-height:1.4;color:var(--ink-soft)}
+.menu__last{margin-top:10px;padding-top:12px;border-top:2px solid var(--rule)}
+.menu__last .item{max-width:760px;margin-inline:auto;border:0}
+.menu__note{margin-top:22px;text-align:center;color:var(--ink-soft);font-size:.98rem}
+@media (max-width:820px){
+  .menu__cols{grid-template-columns:1fr}
+  .menu__col + .menu__col{border-left:0;padding-left:0;border-top:1px dashed var(--rule)}
+  .menu__col + .menu__col .menu__head{display:none}
+}
+@media (max-width:420px){.chip{min-width:3.1rem;font-size:1.02rem}.menu__head span{min-width:3.1rem;font-size:.66rem}.item{gap:9px}.item .medal{width:2rem;height:2rem;font-size:1rem}}
+
+/* ---- pâtes ---- */
+.pastas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,3vw,32px)}
+.pasta{padding:28px 20px 24px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px}
+.pasta .label{color:var(--ink-soft)}
+.pasta h3{font-family:var(--f-display);font-style:italic;font-weight:800;font-size:1.65rem;color:var(--basil-ink)}
+.pasta p{font-size:.98rem;color:var(--ink-soft);max-width:28ch}
+.pasta .price{font-family:var(--f-display);font-weight:900;font-size:2.4rem;color:var(--tomato-ink);line-height:1;margin-top:auto;padding-top:8px;font-variant-numeric:tabular-nums}
+.pasta .tricolore{width:70px;height:4px}
+@media (max-width:760px){.pastas{grid-template-columns:1fr;max-width:460px;margin-inline:auto}}
+.pastas-head{background:var(--paper);display:inline-flex;flex-direction:column;align-items:center;gap:12px;padding:16px clamp(16px,4vw,40px) 20px;border-radius:12px;box-shadow:0 18px 40px -22px rgba(0,0,0,.6);max-width:100%}
+
+/* ---- bar ---- */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,64px);align-items:center}
+.split > *{min-width:0}
+.photo{border-radius:14px;overflow:hidden;box-shadow:0 0 0 6px var(--paper),0 0 0 8px var(--gold),0 26px 50px -26px rgba(0,0,0,.7)}
+.photo img{width:100%;height:100%;object-fit:cover}
+.photo figcaption{font-size:.82rem;color:var(--ink-soft);padding:8px 12px;background:var(--paper)}
+.copy{display:flex;flex-direction:column;gap:16px}
+.eyebrow{font-family:var(--f-label);font-weight:700;letter-spacing:.12em;font-size:.88rem;color:var(--tomato-ink)}
+.copy h2{font-family:var(--f-display);font-weight:900;font-size:clamp(2rem,4.6vw,3rem)}
+.copy h2 .script{font-size:1.15em;color:var(--basil-ink)}
+.panaches{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:10px}
+.panaches li{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;align-items:center;padding:12px 16px;border-radius:10px;background:var(--paper-2)}
+.panaches .dot{width:22px;height:22px;border-radius:50%;grid-row:span 2;box-shadow:inset 0 -3px 0 rgba(0,0,0,.18),0 0 0 2px var(--paper)}
+.panaches b{font-family:var(--f-display);font-style:italic;font-weight:800;font-size:1.2rem}
+.panaches span{font-size:.95rem;color:var(--ink-soft)}
+@media (max-width:860px){.split{grid-template-columns:1fr}}
+.news{margin-top:clamp(56px,8vw,96px)}
+.posters{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(22px,4vw,44px);max-width:900px;margin-inline:auto}
+.poster{display:flex;flex-direction:column;background:var(--paper);border-radius:14px;overflow:hidden;box-shadow:0 0 0 2px var(--gold),0 0 0 7px var(--paper),0 0 0 8px rgba(184,145,63,.55),0 26px 50px -24px rgba(0,0,0,.7);transition:transform .2s ease}
+.poster:nth-child(1){transform:rotate(-1.2deg)}
+.poster:nth-child(2){transform:rotate(1.2deg)}
+.poster:hover{transform:rotate(0) translateY(-4px)}
+.poster img{width:100%;aspect-ratio:2/3;object-fit:cover}
+.poster__body{display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:18px 20px 22px;flex:1}
+.poster__body .ribbon{font-size:1.45rem}
+.poster__body p{color:var(--ink-soft)}
+.poster__price{margin-top:auto;font-size:1.3rem;min-width:4.6rem}
+.poster__tag{margin-top:auto;font-size:1.35rem;color:var(--tomato-ink)!important}
+@media (max-width:640px){.posters{grid-template-columns:1fr;max-width:420px}}
+
+/* ---- famille ---- */
+.family{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(28px,5vw,56px);align-items:center}
+.family > *{min-width:0}
+.polaroid{background:#fbf6ea;padding:12px 12px 14px;border-radius:4px;transform:rotate(-1.8deg);box-shadow:0 30px 60px -26px rgba(0,0,0,.85);margin:0}
+.polaroid img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.polaroid figcaption{font-family:var(--f-script);font-size:1.45rem;color:#2a1c12;text-align:center;padding-top:10px}
+.family__card{padding:clamp(24px,4vw,40px);display:flex;flex-direction:column;gap:16px}
+.family__card h2{font-family:var(--f-display);font-weight:900;font-size:clamp(1.9rem,4vw,2.6rem)}
+.mamies{display:flex;gap:16px;align-items:center;padding-top:14px;border-top:1px dashed var(--rule)}
+.mamies img{width:96px;height:96px;border-radius:50%;flex:none;box-shadow:0 0 0 3px var(--gold)}
+.mamies p{font-size:1rem}
+.quotes{display:grid;gap:12px;margin:0}
+.quotes blockquote{margin:0;padding:12px 16px;background:var(--paper-2);border-radius:10px}
+.quotes blockquote p{font-style:italic;font-size:1.05rem}
+.quotes cite{display:block;font-style:normal;margin-top:4px;color:var(--tomato-ink)}
+@media (max-width:900px){.family{grid-template-columns:1fr}.polaroid{max-width:560px;margin-inline:auto}}
+
+/* ---- réserver ---- */
+.contact{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,3vw,28px)}
+.c-card{padding:24px 22px;display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+.c-card .label{color:var(--ink-soft)}
+.c-card .num{font-family:var(--f-display);font-weight:900;font-size:clamp(1.5rem,3vw,1.9rem);font-variant-numeric:tabular-nums;color:var(--ink);text-decoration:none;user-select:all;white-space:nowrap}
+.c-card p{font-size:.98rem;color:var(--ink-soft)}
+.c-card .btn{margin-top:auto}
+.c-card--wa{box-shadow:0 0 0 2px var(--wa),0 0 0 7px var(--paper),0 0 0 8px var(--wa),0 26px 50px -24px rgba(0,0,0,.6)}
+.infos{margin-top:clamp(22px,4vw,36px);padding:clamp(22px,4vw,36px);display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,4vw,48px)}
+.infos > *{min-width:0}
+.infos h3{font-family:var(--f-display);font-weight:900;font-size:1.5rem;margin-bottom:8px}
+.infos address{font-style:normal;font-size:1.1rem}
+.infos a.link{color:var(--tomato-ink);font-weight:700}
+.todo{display:inline-block;margin-top:6px;font-family:var(--f-label);font-weight:700;letter-spacing:.05em;font-size:.8rem;color:var(--tomato-ink);border:1.5px dashed currentColor;border-radius:6px;padding:.25em .6em}
+@media (max-width:900px){.contact{grid-template-columns:1fr;max-width:520px;margin-inline:auto}.infos{grid-template-columns:1fr}}
+.reserve-head{background:var(--paper);display:inline-flex;flex-direction:column;align-items:center;gap:12px;padding:18px clamp(16px,4vw,44px) 22px;border-radius:12px;box-shadow:0 18px 40px -22px rgba(0,0,0,.6);max-width:100%}
+.reserve-head h2{font-family:var(--f-display);font-weight:900;font-size:clamp(1.9rem,4.6vw,2.9rem)}
+.reserve-head h2 .script{color:var(--tomato-ink);font-size:1.1em}
+.reserve-head p{color:var(--ink-soft);max-width:52ch}
+
+/* ---- pied de page ---- */
+.footer{background:var(--tartan-deep);color:var(--on-dark)}
+.footer .wrap{display:flex;flex-wrap:wrap;gap:24px 48px;justify-content:space-between;align-items:flex-start;padding-block:40px}
+.footer .brand span{font-size:1.7rem}
+.footer p,.footer li{font-size:.95rem;opacity:.88}
+.footer ul{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.footer a{text-decoration-color:rgba(246,236,210,.4)}
+.footer small{display:block;width:100%;padding-top:18px;border-top:1px solid rgba(246,236,210,.15);opacity:.7;font-size:.85rem}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-olive" viewBox="0 0 120 40">
+    <path d="M4 24C34 22 70 18 116 10" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+    <g fill="currentColor">
+      <ellipse cx="24" cy="15" rx="11" ry="3.8" transform="rotate(-28 24 15)"/>
+      <ellipse cx="30" cy="31" rx="11" ry="3.8" transform="rotate(22 30 31)"/>
+      <ellipse cx="54" cy="11" rx="11" ry="3.8" transform="rotate(-32 54 11)"/>
+      <ellipse cx="62" cy="27" rx="11" ry="3.8" transform="rotate(20 62 27)"/>
+      <ellipse cx="86" cy="6" rx="10" ry="3.6" transform="rotate(-30 86 6)"/>
+      <ellipse cx="94" cy="21" rx="10" ry="3.6" transform="rotate(18 94 21)"/>
+    </g>
+    <circle cx="44" cy="30" r="4.6" fill="#2f3d1a"/>
+    <circle cx="76" cy="25" r="4.2" fill="#3e5222"/>
+  </symbol>
+  <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.7-.4Z"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2Z"/></symbol>
+</svg>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#accueil"><img src="assets/mamies.webp" alt="" width="44" height="44"><span>Mamies Pizza</span></a>
+    <ul>
+      <li><a href="#chouchous">Nos pizzas</a></li>
+      <li><a href="#carte">La carte</a></li>
+      <li><a href="#pates">Les pâtes</a></li>
+      <li><a href="#bar">Le bar</a></li>
+      <li><a href="#famille">La famille</a></li>
+    </ul>
+    <a class="btn btn--red" href="#reserver"><svg aria-hidden="true"><use href="#i-phone"/></svg><span>Réserver</span></a>
+  </div>
+</header>
+
+<main>
+
+<!-- ====== ACCUEIL ====== -->
+<section class="hero tartan" id="accueil">
+  <div class="wrap">
+    <div class="sign paper">
+      <p class="sign__kicker">Le Relais des Mamies Gourmandes</p>
+      <h1 class="sign__title"><span class="m">Mamies</span> <span class="p">Pizza</span></h1>
+      <div class="tricolore" role="presentation"></div>
+      <p class="sign__sub">Pizzas &amp; Pâtes italiennes</p>
+      <p class="sign__meta"><strong>Sur place ou à emporter</strong> · sur réservation à l'avance<br>15 route d'Aubigny, La Chapelotte (18)</p>
+      <div class="cta">
+        <a class="btn btn--wa" data-wa="Bonjour, je voudrais commander des pizzas." href="#reserver"><svg aria-hidden="true"><use href="#i-wa"/></svg>Commander sur WhatsApp</a>
+        <a class="btn btn--line" href="#carte">Voir la carte</a>
+      </div>
+    </div>
+
+    <figure class="weekly" id="semaine">
+      <!-- rempli automatiquement avec la « pizza de la semaine » (voir le script en bas) -->
+    </figure>
+  </div>
+</section>
+
+<div class="gingham-strip" role="presentation"></div>
+
+<!-- ====== LES DEUX CHOUCHOUS ====== -->
+<section class="band" id="chouchous">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="row">
+        <svg class="olive" aria-hidden="true"><use href="#i-olive"/></svg>
+        <span class="label" style="color:var(--tomato-ink)">Vraies photos, vraies pizzas</span>
+        <svg class="olive olive--flip" aria-hidden="true"><use href="#i-olive"/></svg>
+      </div>
+      <h2 class="copy" style="display:block"><span class="script" style="font-size:clamp(2.4rem,6vw,3.8rem);color:var(--basil-ink)">Les chouchous de la maison</span></h2>
+      <p>Bien garnies, bien gratinées, servies sur la nappe à carreaux. Voici les deux pizzas qu'on vous recommande les yeux fermés.</p>
+    </div>
+    <div class="feats" id="vedettes"></div>
+  </div>
+</section>
+
+<!-- ====== LA CARTE ====== -->
+<section class="band tartan" id="carte">
+  <div class="wrap">
+    <div class="menu paper">
+      <div class="section-head">
+        <div class="row">
+          <svg class="olive" aria-hidden="true"><use href="#i-olive"/></svg>
+          <h2 class="banner">Nos pizzas artisanales</h2>
+          <svg class="olive olive--flip" aria-hidden="true"><use href="#i-olive"/></svg>
+        </div>
+        <p>Deux prix pour chaque pizza : le vert pour l'emporter, le rouge pour la manger sur place.</p>
+      </div>
+      <div class="menu__cols" id="menu-cols"></div>
+      <div class="menu__last" id="menu-last" hidden></div>
+      <p class="menu__note">Sur place ou à emporter · <strong>sur réservation à l'avance</strong> · 07 62 77 54 38</p>
+    </div>
+  </div>
+</section>
+
+<!-- ====== PÂTES ====== -->
+<section class="band gingham" id="pates">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="pastas-head">
+        <h2 class="banner" style="background:var(--basil)">Nos pâtes italiennes</h2>
+        <div class="tricolore" role="presentation"></div>
+        <p style="color:var(--ink-soft)">Trois formules de tagliatelles, sur place ou à emporter.</p>
+      </div>
+    </div>
+    <div class="pastas" id="pastas"></div>
+  </div>
+</section>
+
+<!-- ====== LE BAR ====== -->
+<section class="band" id="bar">
+  <div class="wrap split">
+    <figure class="photo" style="margin:0">
+      <img src="assets/panaches.webp" alt="Trois panachés : un au sirop de kiwi, un banane-kiwi, un à la violette" width="1024" height="740" loading="lazy">
+      <figcaption>Photo d'illustration</figcaption>
+    </figure>
+    <div class="copy">
+      <p class="eyebrow">AU COMPTOIR</p>
+      <h2>Le bar du village, <span class="script">version Mamies</span></h2>
+      <p>Le café du matin, l'apéro entre voisins, une bière fraîche en attendant les pizzas : Isabelle et Mathieu vous accueillent au comptoir, et on y parle de tout sauf de régime.</p>
+      <p><strong>Nos panachés signature</strong>, à goûter au moins une fois :</p>
+      <ul class="panaches">
+        <li><i class="dot" style="background:#7cc242"></i><b>Le Castelpelotois</b><span>Sirop de kiwi</span></li>
+        <li><i class="dot" style="background:linear-gradient(135deg,#f2d23c 50%,#7cc242 50%)"></i><b>Le Chartrain</b><span>Sirop banane / kiwi</span></li>
+        <li><i class="dot" style="background:#7b3fa0"></i><b>Le Cauchois</b><span>Sirop de violette</span></li>
+        <li><i class="dot" style="background:#1bb3a6"></i><b>Le Zette Breton</b><span>Bière, limonade, chouchen breton · nouveau</span></li>
+        <li><i class="dot" style="background:#3fb7d6"></i><b>Le Vaillant</b><span>Bière, limonade, menthe glaciale · nouveau</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="wrap news">
+    <div class="section-head">
+      <div class="row">
+        <svg class="olive" aria-hidden="true"><use href="#i-olive"/></svg>
+        <span class="banner" style="font-size:clamp(1.3rem,3.4vw,2.1rem)">Nouveaux panachés signature</span>
+        <svg class="olive olive--flip" aria-hidden="true"><use href="#i-olive"/></svg>
+      </div>
+      <p>Deux nouvelles recettes au comptoir, chacune baptisée en l'honneur d'un habitué de la maison.</p>
+    </div>
+    <div class="posters">
+      <article class="poster">
+        <img src="assets/panache-zette.webp" alt="Affiche du Zette Breton : un verre de panaché turquoise devant un drapeau breton, 3,50 €" width="800" height="1200" loading="lazy">
+        <div class="poster__body">
+          <h3 class="ribbon">Le Zette Breton</h3>
+          <p>Bière · limonade · chouchen breton</p>
+          <span class="chip chip--sur poster__price">3,50&nbsp;€</span>
+        </div>
+      </article>
+      <article class="poster">
+        <img src="assets/panache-vaillant.webp" alt="Affiche du Vaillant : un verre de panaché bleu glacé au comptoir" width="800" height="1200" loading="lazy">
+        <div class="poster__body">
+          <h3 class="ribbon">Le Vaillant</h3>
+          <p>Bière · limonade · menthe glaciale</p>
+          <p class="poster__tag script">En l'honneur d'un grand homme</p>
+        </div>
+      </article>
+    </div>
+    <p class="menu__note">Images non contractuelles</p>
+  </div>
+</section>
+
+<!-- ====== LA FAMILLE ====== -->
+<section class="band tartan" id="famille">
+  <div class="wrap family">
+    <figure class="polaroid">
+      <img src="assets/equipe.webp" alt="Lucien, Isabelle et Mathieu dans la salle du Relais, tables en nappe vichy" width="584" height="438" loading="lazy">
+      <figcaption>Lucien, Isabelle &amp; Mathieu</figcaption>
+    </figure>
+    <div class="family__card paper">
+      <p class="eyebrow">UNE AFFAIRE DE FAMILLE</p>
+      <h2>Chez nous, on vous reçoit comme à la maison</h2>
+      <p>Isabelle et Mathieu tiennent la salle et le comptoir, Lucien, le papa de Mathieu, est aux fourneaux. Et chaque pizza de la carte porte le nom d'une ville ou d'un village.</p>
+      <div class="mamies">
+        <img src="assets/mamies.webp" alt="Gisèle et Jojo, les deux grands-mères" width="96" height="96" loading="lazy">
+        <p>Le Relais porte le nom de nos deux mamies, <strong>Gisèle</strong> et <strong>Jojo</strong>. Leur gourmandise et leur bonne humeur nous ont tout appris.</p>
+      </div>
+      <div class="quotes">
+        <blockquote><p>« Viens me voir, j'ai des choses pour toi. »</p><cite class="label">MAMIE GISÈLE</cite></blockquote>
+        <blockquote><p>« Allez mon caillot ou ma caillotte, envoie le coup de Trafalgar ! »</p><cite class="label">MAMIE JOJO</cite></blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== RÉSERVER ====== -->
+<section class="band gingham" id="reserver">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="reserve-head">
+        <h2>Réservez <span class="script">votre pizza</span></h2>
+        <div class="tricolore" role="presentation"></div>
+        <p>Les pizzas et les pâtes se commandent à l'avance. Un message WhatsApp ou un coup de fil, et on prépare tout pour l'heure qui vous arrange.</p>
+      </div>
+    </div>
+
+    <div class="contact">
+      <div class="c-card paper c-card--wa">
+        <span class="label">PAR WHATSAPP</span>
+        <span class="num">07 62 77 54 38</span>
+        <p>Écrivez-nous votre commande, le nombre de personnes et l'heure souhaitée.</p>
+        <a class="btn btn--wa" data-wa="Bonjour, je voudrais réserver / commander : " href="#reserver"><svg aria-hidden="true"><use href="#i-wa"/></svg>Écrire sur WhatsApp</a>
+      </div>
+      <div class="c-card paper">
+        <span class="label">PORTABLE</span>
+        <a class="num" href="tel:+33762775438">07 62 77 54 38</a>
+        <p>Appelez-nous pour réserver une table ou commander à emporter.</p>
+        <a class="btn btn--red" href="tel:+33762775438"><svg aria-hidden="true"><use href="#i-phone"/></svg>Appeler le portable</a>
+      </div>
+      <div class="c-card paper">
+        <span class="label">TÉLÉPHONE FIXE</span>
+        <a class="num" href="tel:+33988575967">09 88 57 59 67</a>
+        <p>La ligne du Relais, aux heures d'ouverture.</p>
+        <a class="btn btn--red" href="tel:+33988575967"><svg aria-hidden="true"><use href="#i-phone"/></svg>Appeler le fixe</a>
+      </div>
+    </div>
+
+    <div class="infos paper">
+      <div>
+        <h3>Nous trouver</h3>
+        <address>Le Relais des Mamies Gourmandes<br>15 route d'Aubigny<br>18250 La Chapelotte</address>
+        <p style="margin-top:10px"><a class="link" href="https://www.google.com/maps/search/?api=1&amp;query=15+route+d%27Aubigny+18250+La+Chapelotte" target="_blank" rel="noopener">Ouvrir dans Google Maps</a></p>
+      </div>
+      <div>
+        <h3>Horaires</h3>
+        <p>Les jours et heures d'ouverture du bar et du service pizzas seront indiqués ici.</p>
+        <span class="todo">HORAIRES À COMPLÉTER</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div style="display:grid;gap:10px">
+      <a class="brand" href="#accueil"><img src="assets/mamies.webp" alt="" width="44" height="44" loading="lazy"><span>Mamies Pizza</span></a>
+      <p>Le Relais des Mamies Gourmandes<br>15 route d'Aubigny, 18250 La Chapelotte</p>
+    </div>
+    <ul>
+      <li>Portable / WhatsApp : 07 62 77 54 38</li>
+      <li>Fixe : 09 88 57 59 67</li>
+      <li><a href="https://www.instagram.com/relais.mamies.gourmandes18/" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.facebook.com/people/Le-Relais-des-Mamies-Gourmandes/" target="_blank" rel="noopener">Facebook</a></li>
+    </ul>
+    <ul>
+      <li>SIRET : <span class="todo" style="color:inherit;margin:0">À COMPLÉTER</span></li>
+      <li>Mentions légales</li>
+    </ul>
+    <small>© <span id="annee">2026</span> Le Relais des Mamies Gourmandes · L'abus d'alcool est dangereux pour la santé, à consommer avec modération.</small>
+  </div>
+</footer>
+
+<script>
+/* =====================================================================
+   LA CARTE — c'est ici qu'on modifie les pizzas, les pâtes et les prix.
+
+   ➜ Ajouter une pizza : copier une ligne { ... }, la coller à la fin de
+     la liste « pizzas » et changer le nom, les ingrédients et les prix.
+     Le numéro se met tout seul selon l'ordre de la liste.
+   ➜ Ajouter une photo : déposer l'image dans le dossier « assets »
+     puis ajouter  photo: "assets/mon-image.webp"  à la pizza.
+   ➜ vedette: true  → la pizza apparaît en grand dans « Les chouchous ».
+   ➜ PIZZA_DE_LA_SEMAINE : mettre le nom exact d'une pizza de la liste.
+   ===================================================================== */
+
+const PIZZA_DE_LA_SEMAINE = "La Bévilloise";
+
+const pizzas = [
+  { nom: "La Fontainaise",     ingredients: "Tomate, mozzarella, origan",                                   emporter: 8,  surPlace: 10 },
+  { nom: "La St Laurentaise",  ingredients: "Tomate, mozzarella, jambon blanc",                             emporter: 9,  surPlace: 11 },
+  { nom: "La Bourdainvillaise",ingredients: "Tomate, jambon blanc, oignons, poivrons, mozzarella, champignons", emporter: 9, surPlace: 11 },
+  { nom: "La Castelpelotoise", ingredients: "Tomate, mozzarella, chèvre",                                   emporter: 10, surPlace: 12 },
+  { nom: "La Chartraine",      ingredients: "Tomate, bœuf en sauce bolognaise, mozzarella",                 emporter: 10, surPlace: 12 },
+  { nom: "La Montluçonnaise",  ingredients: "Crème, mozzarella, emmental, chèvre, raclette, pommes de terre vapeur", emporter: 11, surPlace: 13 },
+  { nom: "La Bulléenne",       ingredients: "Crème, mozzarella, raclette, jambon fumé",                     emporter: 11, surPlace: 13 },
+  { nom: "La Mainvilloise",    ingredients: "Tomate, mozzarella, jambon blanc, champignons",                emporter: 9,  surPlace: 11,
+    photo: "assets/pizza-mainvilloise.webp", vedette: true },
+  { nom: "La Chamantaise",     ingredients: "Crème, mozzarella, poulet, champignons, oignons",              emporter: 10, surPlace: 12 },
+  { nom: "La Senlisienne",     ingredients: "Tomate, mozzarella, poulet, poivrons, oignons",                emporter: 10, surPlace: 12 },
+  { nom: "La Jardinière",      ingredients: "Tomate, mozzarella, champignons, poivrons, oignons",           emporter: 9,  surPlace: 11 },
+  { nom: "La Blaincourtoise",  ingredients: "Crème, mozzarella, jambon blanc, poulet, emmental",            emporter: 11, surPlace: 13 },
+  { nom: "La Bévilloise",      ingredients: "Tomate, chorizo, poivrons, champignons, mozzarella, jambon blanc et oignons", emporter: 10, surPlace: 12,
+    photo: "assets/pizza-bevilloise.webp", vedette: true },
+];
+
+const pates = [
+  { nom: "à la bolognaise", detail: "", prix: 12 },
+  { nom: "à la carbonara",  detail: "", prix: 12 },
+  { nom: "au pesto",        detail: "", prix: 10 },
+];
+
+/* Numéro WhatsApp (format international, sans le 0 ni les espaces) */
+const WHATSAPP = "33762775438";
+
+/* ===================== fin de la partie à modifier ===================== */
+
+const euro = n => `${n} €`;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const waLink = msg => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
+const chips = p => `<div class="chips"><span class="chip chip--emp" title="À emporter">${euro(p.emporter)}</span><span class="chip chip--sur" title="Sur place">${euro(p.surPlace)}</span></div>`;
+const isWeek = p => p.nom === PIZZA_DE_LA_SEMAINE;
+
+pizzas.forEach((p, i) => (p.num = i + 1));
+
+// Pizza de la semaine (en haut de page)
+const week = pizzas.find(isWeek) || pizzas.find(p => p.photo) || pizzas[0];
+document.getElementById("semaine").innerHTML = `
+  <div class="stamp" aria-hidden="true"><span>PIZZA DE<b>la semaine</b></span></div>
+  <div class="weekly__frame">
+    ${week.photo ? `<img src="${esc(week.photo)}" alt="${esc(week.nom)}, photographiée au Relais" width="870" height="670">` : ""}
+    <figcaption class="weekly__cap">
+      <div><h3>${esc(week.nom)}</h3><p>${esc(week.ingredients)}</p></div>
+      ${chips(week)}
+    </figcaption>
+  </div>`;
+
+// Les chouchous (pizzas « vedette »)
+document.getElementById("vedettes").innerHTML = pizzas.filter(p => p.vedette).map(p => `
+  <article class="feat paper">
+    <div class="feat__img">
+      ${p.photo ? `<img src="${esc(p.photo)}" alt="${esc(p.nom)} sur une nappe à carreaux rouges et blancs" width="870" height="670" loading="lazy">` : ""}
+      <span class="medal">${p.num}</span>
+    </div>
+    <div class="feat__body">
+      <h3 class="ribbon feat__name">${esc(p.nom)}</h3>
+      ${isWeek(p) ? `<span><span class="tag-week">Pizza de la semaine</span></span>` : ""}
+      <p class="feat__ing">${esc(p.ingredients)}</p>
+      <div class="feat__foot">
+        <div class="chips">
+          <span class="chip chip--emp"><small>À EMPORTER</small>${euro(p.emporter)}</span>
+          <span class="chip chip--sur"><small>SUR PLACE</small>${euro(p.surPlace)}</span>
+        </div>
+        <a class="btn btn--wa" href="${waLink(`Bonjour, je voudrais commander ${p.nom.replace(/^La /, "une ")}.`)}" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Commander</a>
+      </div>
+    </div>
+  </article>`).join("");
+
+// La carte complète : deux colonnes, la dernière pizza en pleine largeur si le nombre est impair
+const row = p => `
+  <div class="item">
+    <span class="medal">${p.num}</span>
+    <div><h3>${esc(p.nom)}${isWeek(p) ? ` <span class="tag-week">de la semaine</span>` : ""}</h3><p>${esc(p.ingredients)}</p></div>
+    ${chips(p)}
+  </div>`;
+const head = `<div class="menu__head" aria-hidden="true"><span class="e">À emporter</span><span class="s">Sur place</span></div>`;
+const list = pizzas.slice();
+const last = list.length % 2 ? list.pop() : null;
+const half = Math.ceil(list.length / 2);
+document.getElementById("menu-cols").innerHTML =
+  `<div class="menu__col">${head}${list.slice(0, half).map(row).join("")}</div>` +
+  `<div class="menu__col">${head}${list.slice(half).map(row).join("")}</div>`;
+if (last) {
+  const el = document.getElementById("menu-last");
+  el.innerHTML = row(last);
+  el.hidden = false;
+}
+
+// Pâtes
+document.getElementById("pastas").innerHTML = pates.map(p => `
+  <article class="pasta paper">
+    <span class="label">TAGLIATELLES</span>
+    <h3>${esc(p.nom)}</h3>
+    <div class="tricolore" role="presentation"></div>
+    ${p.detail ? `<p>${esc(p.detail)}</p>` : ""}
+    <span class="price">${euro(p.prix)}</span>
+  </article>`).join("");
+
+// Liens WhatsApp génériques
+document.querySelectorAll("[data-wa]").forEach(a => {
+  a.href = waLink(a.dataset.wa);
+  a.target = "_blank";
+  a.rel = "noopener";
+});
+
+document.getElementById("annee").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

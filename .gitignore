@@ -1,0 +1,14 @@
+# On ne publie que le site : index.html + les images utilisées
+/*
+!/index.html
+!/README.md
+!/.gitignore
+!/assets/
+/assets/*
+!/assets/equipe.webp
+!/assets/mamies.webp
+!/assets/panache-vaillant.webp
+!/assets/panache-zette.webp
+!/assets/panaches.webp
+!/assets/pizza-bevilloise.webp
+!/assets/pizza-mainvilloise.webp

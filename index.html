@@ -214,19 +214,17 @@ p{margin:0}
 .panaches b{font-family:var(--f-display);font-style:italic;font-weight:800;font-size:1.2rem}
 .panaches span{font-size:.95rem;color:var(--ink-soft)}
 @media (max-width:860px){.split{grid-template-columns:1fr}}
-.news{margin-top:clamp(56px,8vw,96px)}
-.posters{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(22px,4vw,44px);max-width:900px;margin-inline:auto}
-.poster{display:flex;flex-direction:column;background:var(--paper);border-radius:14px;overflow:hidden;box-shadow:0 0 0 2px var(--gold),0 0 0 7px var(--paper),0 0 0 8px rgba(184,145,63,.55),0 26px 50px -24px rgba(0,0,0,.7);transition:transform .2s ease}
-.poster:nth-child(1){transform:rotate(-1.2deg)}
-.poster:nth-child(2){transform:rotate(1.2deg)}
-.poster:hover{transform:rotate(0) translateY(-4px)}
-.poster img{width:100%;aspect-ratio:2/3;object-fit:cover}
-.poster__body{display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:18px 20px 22px;flex:1}
-.poster__body .ribbon{font-size:1.45rem}
-.poster__body p{color:var(--ink-soft)}
-.poster__price{margin-top:auto;font-size:1.3rem;min-width:4.6rem}
-.poster__tag{margin-top:auto;font-size:1.35rem;color:var(--tomato-ink)!important}
-@media (max-width:640px){.posters{grid-template-columns:1fr;max-width:420px}}
+.split--bar{align-items:start}
+.news{margin-top:clamp(36px,5vw,56px)}
+.posters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.5vw,30px)}
+.poster{display:flex;flex-direction:column;background:var(--paper) var(--grain-paper);border-radius:12px;overflow:hidden;box-shadow:0 0 0 2px var(--gold),0 0 0 6px var(--paper),0 0 0 7px rgba(184,145,63,.55),0 22px 40px -22px rgba(0,0,0,.6);transition:transform .2s ease}
+.poster:hover{transform:translateY(-4px)}
+.poster img{width:100%;height:auto;aspect-ratio:2/3}
+.poster__body{display:flex;flex-direction:column;gap:4px;padding:14px 16px 16px;flex:1}
+.poster__body h3{font-family:var(--f-display);font-style:italic;font-weight:800;font-size:1.25rem;color:var(--basil-ink);display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px}
+.poster__body p{color:var(--ink-soft);font-size:.95rem}
+@media (max-width:760px){.posters{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.posters{grid-template-columns:1fr;max-width:340px;margin-inline:auto}}
 .poster__zoom{position:relative;display:block;padding:0;border:0;background:none;cursor:zoom-in;width:100%}
 .poster__hint{position:absolute;right:12px;bottom:12px;font-family:var(--f-label);font-weight:700;letter-spacing:.06em;font-size:.85rem;color:#fff;background:rgba(14,42,25,.85);padding:.35em .8em;border-radius:999px;box-shadow:0 0 0 1.5px var(--gold)}
 .poster__zoom:hover .poster__hint,.poster__zoom:focus-visible .poster__hint{background:var(--tomato)}
@@ -402,15 +400,13 @@ p{margin:0}
 
 <!-- ====== LE BAR ====== -->
 <section class="band parchment" id="bar">
-  <div class="wrap split">
-    <figure class="photo" style="margin:0">
-      <img src="assets/panaches.webp" alt="Trois panachés : un au sirop de kiwi, un banane-kiwi, un à la violette" width="1024" height="740" loading="lazy">
-      <figcaption>Photo d'illustration</figcaption>
-    </figure>
+  <div class="wrap split split--bar">
     <div class="copy">
       <p class="eyebrow">AU COMPTOIR</p>
       <h2>Le bar du village, <span class="script">version Mamies</span></h2>
       <p>Le café du matin, l'apéro entre voisins, une bière fraîche en attendant les pizzas : Isabelle et Mathieu vous accueillent au comptoir, et on y parle de tout sauf de régime.</p>
+    </div>
+    <div class="copy">
       <p><strong>Nos panachés signature</strong>, à goûter au moins une fois :</p>
       <ul class="panaches">
         <li><i class="dot" style="background:#7cc242"></i><b>Le Castelpelotois</b><span>Sirop de kiwi</span></li>
@@ -423,29 +419,26 @@ p{margin:0}
   </div>
 
   <div class="wrap news">
-    <div class="section-head">
-      <div class="row">
-        <svg class="olive" aria-hidden="true"><use href="#i-olive"/></svg>
-        <span class="banner" style="font-size:clamp(1.3rem,3.4vw,2.1rem)">Nouveaux panachés signature</span>
-        <svg class="olive olive--flip" aria-hidden="true"><use href="#i-olive"/></svg>
-      </div>
-      <p>Deux nouvelles recettes au comptoir, chacune baptisée en l'honneur d'un habitué de la maison.</p>
-    </div>
     <div class="posters">
+      <article class="poster">
+        <button class="poster__zoom" type="button" aria-label="Voir l'affiche des 3 panachés signature en grand"><img src="assets/panaches-affiche.webp" alt="Affiche des 3 panachés signature : le Castelpelotois au kiwi, le Chartrain banane-kiwi et le Cauchois à la violette" width="800" height="1200" loading="lazy"><span class="poster__hint">Agrandir</span></button>
+        <div class="poster__body">
+          <h3>Les 3 panachés signature</h3>
+          <p>Castelpelotois · Chartrain · Cauchois</p>
+        </div>
+      </article>
       <article class="poster">
         <button class="poster__zoom" type="button" aria-label="Voir l'affiche du Zette Breton en grand"><img src="assets/panache-zette.webp" alt="Affiche du Zette Breton : un verre de panaché turquoise devant un drapeau breton, 3,50 €" width="800" height="1200" loading="lazy"><span class="poster__hint">Agrandir</span></button>
         <div class="poster__body">
-          <h3 class="ribbon">Le Zette Breton</h3>
-          <p>Bière · limonade · chouchen breton</p>
-          <span class="chip chip--sur poster__price">3,50&nbsp;€</span>
+          <h3>Le Zette Breton <span class="tag-week">Nouveau</span></h3>
+          <p>Bière · limonade · chouchen breton · <strong>3,50&nbsp;€</strong></p>
         </div>
       </article>
       <article class="poster">
         <button class="poster__zoom" type="button" aria-label="Voir l'affiche du Vaillant en grand"><img src="assets/panache-vaillant.webp" alt="Affiche du Vaillant : un verre de panaché bleu glacé au comptoir" width="800" height="1200" loading="lazy"><span class="poster__hint">Agrandir</span></button>
         <div class="poster__body">
-          <h3 class="ribbon">Le Vaillant</h3>
+          <h3>Le Vaillant <span class="tag-week">Nouveau</span></h3>
           <p>Bière · limonade · menthe glaciale</p>
-          <p class="poster__tag script">En l'honneur d'un grand homme</p>
         </div>
       </article>
     </div>

@@ -222,6 +222,14 @@ p{margin:0}
 .poster__price{margin-top:auto;font-size:1.3rem;min-width:4.6rem}
 .poster__tag{margin-top:auto;font-size:1.35rem;color:var(--tomato-ink)!important}
 @media (max-width:640px){.posters{grid-template-columns:1fr;max-width:420px}}
+.poster__zoom{position:relative;display:block;padding:0;border:0;background:none;cursor:zoom-in;width:100%}
+.poster__hint{position:absolute;right:12px;bottom:12px;font-family:var(--f-label);font-weight:700;letter-spacing:.06em;font-size:.85rem;color:#fff;background:rgba(14,42,25,.85);padding:.35em .8em;border-radius:999px;box-shadow:0 0 0 1.5px var(--gold)}
+.poster__zoom:hover .poster__hint,.poster__zoom:focus-visible .poster__hint{background:var(--tomato)}
+.lightbox{padding:0;border:0;background:transparent;max-width:min(94vw,720px);max-height:94vh;overflow:visible}
+.lightbox::backdrop{background:rgba(8,22,13,.88)}
+.lightbox img{display:block;max-width:100%;max-height:90vh;width:auto;height:auto;margin-inline:auto;border-radius:10px;box-shadow:0 0 0 3px var(--gold),0 30px 60px rgba(0,0,0,.7)}
+.lightbox__close{position:absolute;top:-14px;right:-14px;width:44px;height:44px;border-radius:50%;border:0;cursor:pointer;background:var(--tomato);color:#fff;font-size:1.8rem;line-height:1;box-shadow:0 0 0 3px #fff}
+@media (max-width:640px){.lightbox__close{top:8px;right:8px}}
 
 /* ---- famille ---- */
 .family{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(28px,5vw,56px);align-items:center}
@@ -413,7 +421,7 @@ p{margin:0}
     </div>
     <div class="posters">
       <article class="poster">
-        <img src="assets/panache-zette.webp" alt="Affiche du Zette Breton : un verre de panaché turquoise devant un drapeau breton, 3,50 €" width="800" height="1200" loading="lazy">
+        <button class="poster__zoom" type="button" aria-label="Voir l'affiche du Zette Breton en grand"><img src="assets/panache-zette.webp" alt="Affiche du Zette Breton : un verre de panaché turquoise devant un drapeau breton, 3,50 €" width="800" height="1200" loading="lazy"><span class="poster__hint">Agrandir</span></button>
         <div class="poster__body">
           <h3 class="ribbon">Le Zette Breton</h3>
           <p>Bière · limonade · chouchen breton</p>
@@ -421,7 +429,7 @@ p{margin:0}
         </div>
       </article>
       <article class="poster">
-        <img src="assets/panache-vaillant.webp" alt="Affiche du Vaillant : un verre de panaché bleu glacé au comptoir" width="800" height="1200" loading="lazy">
+        <button class="poster__zoom" type="button" aria-label="Voir l'affiche du Vaillant en grand"><img src="assets/panache-vaillant.webp" alt="Affiche du Vaillant : un verre de panaché bleu glacé au comptoir" width="800" height="1200" loading="lazy"><span class="poster__hint">Agrandir</span></button>
         <div class="poster__body">
           <h3 class="ribbon">Le Vaillant</h3>
           <p>Bière · limonade · menthe glaciale</p>
@@ -429,9 +437,14 @@ p{margin:0}
         </div>
       </article>
     </div>
-    <p class="menu__note">Images non contractuelles</p>
+    <p class="menu__note">Images non contractuelles · cliquez sur une affiche pour la voir en entier</p>
   </div>
 </section>
+
+<dialog class="lightbox" id="lightbox" aria-label="Affiche en grand">
+  <img src="" alt="">
+  <button class="lightbox__close" type="button" aria-label="Fermer">×</button>
+</dialog>
 
 <!-- ====== LA FAMILLE ====== -->
 <section class="band tartan" id="famille">
@@ -645,6 +658,20 @@ document.querySelectorAll("[data-wa]").forEach(a => {
   a.target = "_blank";
   a.rel = "noopener";
 });
+
+// Affiches des panachés : clic = affiche en grand
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = lightbox.querySelector("img");
+document.querySelectorAll(".poster__zoom").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const img = btn.querySelector("img");
+    lightboxImg.src = img.src;
+    lightboxImg.alt = img.alt;
+    lightbox.showModal();
+  });
+});
+lightbox.querySelector(".lightbox__close").addEventListener("click", () => lightbox.close());
+lightbox.addEventListener("click", e => { if (e.target === lightbox) lightbox.close(); });
 
 document.getElementById("annee").textContent = new Date().getFullYear();
 </script>

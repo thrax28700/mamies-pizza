@@ -216,15 +216,16 @@ p{margin:0}
 @media (max-width:860px){.split{grid-template-columns:1fr}}
 .split--bar{align-items:start}
 .news{margin-top:clamp(36px,5vw,56px)}
-.posters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.5vw,30px)}
+.posters{display:grid;grid-template-columns:repeat(3,minmax(0,210px));justify-content:center;gap:clamp(16px,2.5vw,30px)}
 .poster{display:flex;flex-direction:column;background:var(--paper) var(--grain-paper);border-radius:12px;overflow:hidden;box-shadow:0 0 0 2px var(--gold),0 0 0 6px var(--paper),0 0 0 7px rgba(184,145,63,.55),0 22px 40px -22px rgba(0,0,0,.6);transition:transform .2s ease}
 .poster:hover{transform:translateY(-4px)}
 .poster img{width:100%;height:auto;aspect-ratio:2/3}
-.poster__body{display:flex;flex-direction:column;gap:4px;padding:14px 16px 16px;flex:1}
-.poster__body h3{font-family:var(--f-display);font-style:italic;font-weight:800;font-size:1.25rem;color:var(--basil-ink);display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px}
-.poster__body p{color:var(--ink-soft);font-size:.95rem}
-@media (max-width:760px){.posters{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:480px){.posters{grid-template-columns:1fr;max-width:340px;margin-inline:auto}}
+.poster__body{display:flex;flex-direction:column;gap:2px;padding:10px 12px 12px;flex:1}
+.poster__body h3{font-family:var(--f-display);font-style:italic;font-weight:800;font-size:1.05rem;color:var(--basil-ink);display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px}
+.poster__body h3 .tag-week{font-size:.66rem}
+.poster__body p{color:var(--ink-soft);font-size:.85rem;line-height:1.35}
+.poster__hint{right:8px;bottom:8px;font-size:.72rem}
+@media (max-width:700px){.posters{grid-template-columns:repeat(3,minmax(0,1fr))}.poster__body{padding:8px}.poster__body p{display:none}.poster__hint{display:none}}
 .poster__zoom{position:relative;display:block;padding:0;border:0;background:none;cursor:zoom-in;width:100%}
 .poster__hint{position:absolute;right:12px;bottom:12px;font-family:var(--f-label);font-weight:700;letter-spacing:.06em;font-size:.85rem;color:#fff;background:rgba(14,42,25,.85);padding:.35em .8em;border-radius:999px;box-shadow:0 0 0 1.5px var(--gold)}
 .poster__zoom:hover .poster__hint,.poster__zoom:focus-visible .poster__hint{background:var(--tomato)}

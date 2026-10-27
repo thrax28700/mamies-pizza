@@ -215,20 +215,17 @@ p{margin:0}
 .panaches span{font-size:.95rem;color:var(--ink-soft)}
 @media (max-width:860px){.split{grid-template-columns:1fr}}
 .split--bar{align-items:start}
-.news{margin-top:clamp(36px,5vw,56px)}
-.posters{display:grid;grid-template-columns:repeat(3,minmax(0,210px));justify-content:center;gap:clamp(16px,2.5vw,30px)}
-.poster{display:flex;flex-direction:column;background:var(--paper) var(--grain-paper);border-radius:12px;overflow:hidden;box-shadow:0 0 0 2px var(--gold),0 0 0 6px var(--paper),0 0 0 7px rgba(184,145,63,.55),0 22px 40px -22px rgba(0,0,0,.6);transition:transform .2s ease}
-.poster:hover{transform:translateY(-4px)}
-.poster img{width:100%;height:auto;aspect-ratio:2/3}
-.poster__body{display:flex;flex-direction:column;gap:2px;padding:10px 12px 12px;flex:1}
-.poster__body h3{font-family:var(--f-display);font-style:italic;font-weight:800;font-size:1.05rem;color:var(--basil-ink);display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px}
-.poster__body h3 .tag-week{font-size:.66rem}
-.poster__body p{color:var(--ink-soft);font-size:.85rem;line-height:1.35}
-.poster__hint{right:8px;bottom:8px;font-size:.72rem}
-@media (max-width:700px){.posters{grid-template-columns:repeat(3,minmax(0,1fr))}.poster__body{padding:8px}.poster__body p{display:none}.poster__hint{display:none}}
-.poster__zoom{position:relative;display:block;padding:0;border:0;background:none;cursor:zoom-in;width:100%}
-.poster__hint{position:absolute;right:12px;bottom:12px;font-family:var(--f-label);font-weight:700;letter-spacing:.06em;font-size:.85rem;color:#fff;background:rgba(14,42,25,.85);padding:.35em .8em;border-radius:999px;box-shadow:0 0 0 1.5px var(--gold)}
-.poster__zoom:hover .poster__hint,.poster__zoom:focus-visible .poster__hint{background:var(--tomato)}
+.posters{display:flex;flex-wrap:wrap;gap:clamp(14px,2vw,24px);margin-top:10px}
+.posters__note{font-size:.85rem;color:var(--ink-soft)}
+.poster{width:140px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}
+.poster__zoom{position:relative;display:block;padding:0;border:0;background:none;cursor:zoom-in;width:100%;border-radius:6px;transition:transform .2s ease}
+.poster__zoom:hover{transform:translateY(-3px)}
+.poster img{width:100%;height:auto;aspect-ratio:2/3;border-radius:6px;box-shadow:0 10px 22px -10px rgba(0,0,0,.55)}
+.poster__hint{display:none}
+.poster__body h3{font-family:var(--f-display);font-style:italic;font-weight:800;font-size:.98rem;color:var(--basil-ink);line-height:1.2}
+.poster__body .tag-week{display:none}
+.poster__body p{display:none}
+@media (max-width:420px){.poster{width:calc(33.33% - 12px)}.posters{gap:12px}}
 .lightbox{padding:0;border:0;background:transparent;max-width:min(94vw,720px);max-height:94vh;overflow:visible}
 .lightbox::backdrop{background:rgba(8,22,13,.88)}
 .lightbox img{display:block;max-width:100%;max-height:90vh;width:auto;height:auto;margin-inline:auto;border-radius:10px;box-shadow:0 0 0 3px var(--gold),0 30px 60px rgba(0,0,0,.7)}
@@ -406,6 +403,30 @@ p{margin:0}
       <p class="eyebrow">AU COMPTOIR</p>
       <h2>Le bar du village, <span class="script">version Mamies</span></h2>
       <p>Le café du matin, l'apéro entre voisins, une bière fraîche en attendant les pizzas : Isabelle et Mathieu vous accueillent au comptoir, et on y parle de tout sauf de régime.</p>
+      <div class="posters">
+        <article class="poster">
+          <button class="poster__zoom" type="button" aria-label="Voir l'affiche des 3 panachés signature en grand"><img src="assets/panaches-affiche.webp" alt="Affiche des 3 panachés signature : le Castelpelotois au kiwi, le Chartrain banane-kiwi et le Cauchois à la violette" width="800" height="1200" loading="lazy"><span class="poster__hint">Agrandir</span></button>
+          <div class="poster__body">
+            <h3>Les 3 panachés signature</h3>
+            <p>Castelpelotois · Chartrain · Cauchois</p>
+          </div>
+        </article>
+        <article class="poster">
+          <button class="poster__zoom" type="button" aria-label="Voir l'affiche du Zette Breton en grand"><img src="assets/panache-zette.webp" alt="Affiche du Zette Breton : un verre de panaché turquoise devant un drapeau breton, 3,50 €" width="800" height="1200" loading="lazy"><span class="poster__hint">Agrandir</span></button>
+          <div class="poster__body">
+            <h3>Le Zette Breton <span class="tag-week">Nouveau</span></h3>
+            <p>Bière · limonade · chouchen breton · <strong>3,50&nbsp;€</strong></p>
+          </div>
+        </article>
+        <article class="poster">
+          <button class="poster__zoom" type="button" aria-label="Voir l'affiche du Vaillant en grand"><img src="assets/panache-vaillant.webp" alt="Affiche du Vaillant : un verre de panaché bleu glacé au comptoir" width="800" height="1200" loading="lazy"><span class="poster__hint">Agrandir</span></button>
+          <div class="poster__body">
+            <h3>Le Vaillant <span class="tag-week">Nouveau</span></h3>
+            <p>Bière · limonade · menthe glaciale</p>
+          </div>
+        </article>
+      </div>
+      <p class="posters__note">Images non contractuelles · cliquez sur une affiche pour la voir en entier</p>
     </div>
     <div class="copy">
       <p><strong>Nos panachés signature</strong>, à goûter au moins une fois :</p>
@@ -419,32 +440,6 @@ p{margin:0}
     </div>
   </div>
 
-  <div class="wrap news">
-    <div class="posters">
-      <article class="poster">
-        <button class="poster__zoom" type="button" aria-label="Voir l'affiche des 3 panachés signature en grand"><img src="assets/panaches-affiche.webp" alt="Affiche des 3 panachés signature : le Castelpelotois au kiwi, le Chartrain banane-kiwi et le Cauchois à la violette" width="800" height="1200" loading="lazy"><span class="poster__hint">Agrandir</span></button>
-        <div class="poster__body">
-          <h3>Les 3 panachés signature</h3>
-          <p>Castelpelotois · Chartrain · Cauchois</p>
-        </div>
-      </article>
-      <article class="poster">
-        <button class="poster__zoom" type="button" aria-label="Voir l'affiche du Zette Breton en grand"><img src="assets/panache-zette.webp" alt="Affiche du Zette Breton : un verre de panaché turquoise devant un drapeau breton, 3,50 €" width="800" height="1200" loading="lazy"><span class="poster__hint">Agrandir</span></button>
-        <div class="poster__body">
-          <h3>Le Zette Breton <span class="tag-week">Nouveau</span></h3>
-          <p>Bière · limonade · chouchen breton · <strong>3,50&nbsp;€</strong></p>
-        </div>
-      </article>
-      <article class="poster">
-        <button class="poster__zoom" type="button" aria-label="Voir l'affiche du Vaillant en grand"><img src="assets/panache-vaillant.webp" alt="Affiche du Vaillant : un verre de panaché bleu glacé au comptoir" width="800" height="1200" loading="lazy"><span class="poster__hint">Agrandir</span></button>
-        <div class="poster__body">
-          <h3>Le Vaillant <span class="tag-week">Nouveau</span></h3>
-          <p>Bière · limonade · menthe glaciale</p>
-        </div>
-      </article>
-    </div>
-    <p class="menu__note">Images non contractuelles · cliquez sur une affiche pour la voir en entier</p>
-  </div>
 </section>
 
 <dialog class="lightbox" id="lightbox" aria-label="Affiche en grand">

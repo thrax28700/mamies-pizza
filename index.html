@@ -11,11 +11,14 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@500;700&family=Alegreya:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Kaushan+Script&family=Playfair+Display:ital,wght@0,800;0,900;1,700;1,800&display=swap">
 <style>
-/* Mise en page : bandeaux alternés tartan vert / papier crème / nappe vichy, comme la carte affichée au Relais.
+/* Mise en page : le décor de la carte affichée au Relais — cadre en planches de bois, parchemin, olives et tomates, nappe vichy.
    Le contenu se lit toujours sur du papier crème ; les motifs restent autour. */
 :root{
-  --tartan:#173f27;
-  --tartan-deep:#0e2a19;
+  --wood:#74401f;
+  --wood-deep:#2c170b;
+  --paper-edge:rgba(150,95,35,.24);
+  --grain-wood:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='520' height='520'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.006 0.22' numOctaves='4' seed='11' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.12 0 0 0 0 0.05 0 0 0 0 0.01 0 0 0 1.1 -0.35'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  --grain-paper:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.28 0 0 0 0 0.1 0 0 0 0.55 -0.18'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
   --paper:#fbf4e2;
   --paper-2:#f2e4c2;
   --ink:#2a1c12;
@@ -31,30 +34,18 @@
   --rule:rgba(42,28,18,.18);
   --wa:#1f7a45;
 
+  color-scheme:light; /* un seul look, celui de la carte : parchemin clair sur bois */
+
   --f-script:"Kaushan Script","Brush Script MT",cursive;
   --f-display:"Playfair Display",Georgia,"Times New Roman",serif;
   --f-body:"Alegreya",Georgia,"Times New Roman",serif;
   --f-label:"Alegreya Sans SC","Alegreya Sans","Segoe UI",system-ui,sans-serif;
 }
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    --paper:#261c14;--paper-2:#32251a;--ink:#f3e7cc;--ink-soft:#c5ae8b;
-    --basil-ink:#86c796;--tomato-ink:#f2858a;--gold:#d2ad5c;
-    --check-base:#3b2b21;--check-red:rgba(176,30,38,.55);--rule:rgba(243,231,204,.16);
-    color-scheme:dark;
-  }
-}
-:root[data-theme="dark"]{
-  --paper:#261c14;--paper-2:#32251a;--ink:#f3e7cc;--ink-soft:#c5ae8b;
-  --basil-ink:#86c796;--tomato-ink:#f2858a;--gold:#d2ad5c;
-  --check-base:#3b2b21;--check-red:rgba(176,30,38,.55);--rule:rgba(243,231,204,.16);
-  color-scheme:dark;
-}
 
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:76px}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:1.0625rem;line-height:1.6;-webkit-font-smoothing:antialiased}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--tartan-deep)}
+body{margin:0;background:var(--paper) var(--grain-paper);color:var(--ink);font-family:var(--f-body);font-size:1.0625rem;line-height:1.6;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--wood-deep)}
 img{max-width:100%;display:block}
 a{color:inherit}
 h1,h2,h3{margin:0;text-wrap:balance;line-height:1.1}
@@ -65,13 +56,25 @@ p{margin:0}
 .band{padding-block:clamp(56px,8vw,100px)}
 
 /* ---- motifs ---- */
-.tartan{
-  background-color:var(--tartan);
+.wood{
+  position:relative;overflow:hidden;isolation:isolate;
+  background-color:var(--wood);
   background-image:
-    repeating-linear-gradient(90deg,transparent 0 26px,rgba(0,0,0,.26) 26px 54px,transparent 54px 66px,rgba(196,34,40,.55) 66px 69px,transparent 69px 92px,rgba(255,240,200,.14) 92px 94px,transparent 94px 132px),
-    repeating-linear-gradient(0deg,transparent 0 26px,rgba(0,0,0,.26) 26px 54px,transparent 54px 66px,rgba(196,34,40,.55) 66px 69px,transparent 69px 92px,rgba(255,240,200,.14) 92px 94px,transparent 94px 132px);
+    radial-gradient(ellipse 120% 90% at 50% 50%,transparent 45%,rgba(20,8,2,.6) 100%),
+    repeating-linear-gradient(180deg,transparent 0 136px,rgba(25,10,3,.6) 136px 138px,rgba(255,214,160,.1) 138px 140px),
+    var(--grain-wood),
+    linear-gradient(180deg,#8a5229,#6e3c1d 50%,#7d4522);
+  background-size:auto,auto,520px 520px,auto;
   color:var(--on-dark);
 }
+.wood > .wrap{position:relative;z-index:1}
+.hero.wood::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(circle at 76% 52%,rgba(255,150,50,.42),rgba(255,110,30,.12) 30%,transparent 50%)}
+.parchment{background-color:var(--paper);background-image:radial-gradient(ellipse 110% 85% at 50% 50%,transparent 55%,var(--paper-edge) 100%),var(--grain-paper)}
+.deco{position:absolute;z-index:0;width:clamp(150px,22vw,290px);aspect-ratio:260/140;height:auto;pointer-events:none;filter:drop-shadow(0 8px 10px rgba(0,0,0,.35))}
+.deco--tl{top:-14px;left:-34px;transform:rotate(-6deg)}
+.deco--br{bottom:-14px;right:-34px;transform:scaleX(-1) rotate(-6deg)}
+.deco--tr{top:-14px;right:-34px;transform:scaleX(-1) rotate(-6deg)}
+@media (max-width:640px){.deco{width:130px;opacity:.85}}
 .gingham{
   background-color:var(--check-base);
   background-image:linear-gradient(90deg,var(--check-red) 50%,transparent 50%),linear-gradient(var(--check-red) 50%,transparent 50%);
@@ -81,7 +84,7 @@ p{margin:0}
 .tricolore{height:6px;width:min(260px,60%);margin-inline:auto;border-radius:3px;background:linear-gradient(90deg,#1f8a43 0 33.3%,#fff 33.3% 66.6%,#c8202b 66.6%);box-shadow:0 0 0 1px rgba(0,0,0,.12)}
 
 /* ---- papier, rubans, pastilles ---- */
-.paper{background:var(--paper);color:var(--ink);border-radius:14px;box-shadow:0 0 0 2px var(--gold),0 0 0 7px var(--paper),0 0 0 8px rgba(184,145,63,.55),0 26px 50px -24px rgba(0,0,0,.7)}
+.paper{background:var(--paper) var(--grain-paper);color:var(--ink);border-radius:14px;box-shadow:0 0 0 2px var(--gold),0 0 0 7px var(--paper),0 0 0 8px rgba(184,145,63,.55),0 26px 50px -24px rgba(0,0,0,.7)}
 .ribbon{display:inline-block;font-family:var(--f-display);font-style:italic;font-weight:800;color:#fff;background:var(--basil);padding:.18em .95em .22em;clip-path:polygon(0 10%,4% 0,100% 6%,97% 50%,100% 94%,3% 100%,1.5% 50%)}
 .banner{display:inline-block;font-family:var(--f-display);font-weight:900;text-transform:uppercase;letter-spacing:.02em;color:#fff;background:var(--tomato);padding:.25em 1.1em .3em;font-size:clamp(1.55rem,4.2vw,2.7rem);clip-path:polygon(1% 12%,6% 0,96% 5%,100% 18%,98% 52%,100% 86%,93% 100%,4% 95%,0 82%,2% 48%);text-shadow:0 2px 0 rgba(0,0,0,.25)}
 .chips{display:flex;gap:6px;flex:none}
@@ -107,7 +110,7 @@ p{margin:0}
 .btn--line{border-color:currentColor;color:var(--tomato-ink);background:transparent}
 
 /* ---- navigation ---- */
-.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--tartan-deep);color:var(--on-dark);border-bottom:3px solid transparent;border-image:linear-gradient(90deg,#1f8a43 0 33.3%,#f6ecd2 33.3% 66.6%,#c8202b 66.6%) 1}
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--wood-deep) var(--grain-wood);color:var(--on-dark);border-bottom:3px solid transparent;border-image:linear-gradient(90deg,#1f8a43 0 33.3%,#f6ecd2 33.3% 66.6%,#c8202b 66.6%) 1}
 .nav .wrap{display:flex;align-items:center;gap:18px;min-height:64px}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;min-width:0}
 .brand img{width:44px;height:44px;border-radius:50%;box-shadow:0 0 0 2px var(--gold)}
@@ -269,7 +272,7 @@ p{margin:0}
 .reserve-head p{color:var(--ink-soft);max-width:52ch}
 
 /* ---- pied de page ---- */
-.footer{background:var(--tartan-deep);color:var(--on-dark)}
+.footer{background:var(--wood-deep) var(--grain-wood);color:var(--on-dark)}
 .footer .wrap{display:flex;flex-wrap:wrap;gap:24px 48px;justify-content:space-between;align-items:flex-start;padding-block:40px}
 .footer .brand span{font-size:1.7rem}
 .footer p,.footer li{font-size:.95rem;opacity:.88}
@@ -296,6 +299,11 @@ p{margin:0}
     <circle cx="44" cy="30" r="4.6" fill="#2f3d1a"/>
     <circle cx="76" cy="25" r="4.2" fill="#3e5222"/>
   </symbol>
+  <defs><radialGradient id="g-tom" cx=".38" cy=".38" r=".7"><stop offset="0" stop-color="#ff6b4a"/><stop offset=".55" stop-color="#d0271a"/><stop offset="1" stop-color="#86130b"/></radialGradient></defs>
+  <symbol id="i-branche" viewBox="0 0 260 140">
+    <g style="color:#5d7d2e"><use href="#i-olive" x="0" y="6" width="210" height="70"/><use href="#i-olive" x="20" y="44" width="190" height="64" transform="rotate(12 115 76)"/></g>
+    <circle cx="196" cy="98" r="24" fill="url(#g-tom)"/><ellipse cx="187.6" cy="89.6" rx="5.3" ry="3.1" transform="rotate(-35 187.6 89.6)" fill="#fff" opacity=".45"/><ellipse cx="196" cy="75" rx="10.1" ry="3.1" transform="rotate(0 196 75)" fill="#3f6b1f"/><ellipse cx="196" cy="75" rx="10.1" ry="3.1" transform="rotate(60 196 75)" fill="#3f6b1f"/><ellipse cx="196" cy="75" rx="10.1" ry="3.1" transform="rotate(120 196 75)" fill="#3f6b1f"/><circle cx="232" cy="80" r="19" fill="url(#g-tom)"/><ellipse cx="225.3" cy="73.3" rx="4.2" ry="2.5" transform="rotate(-35 225.3 73.3)" fill="#fff" opacity=".45"/><ellipse cx="232" cy="62" rx="8.0" ry="2.5" transform="rotate(0 232 62)" fill="#3f6b1f"/><ellipse cx="232" cy="62" rx="8.0" ry="2.5" transform="rotate(60 232 62)" fill="#3f6b1f"/><ellipse cx="232" cy="62" rx="8.0" ry="2.5" transform="rotate(120 232 62)" fill="#3f6b1f"/><circle cx="170" cy="122" r="17" fill="url(#g-tom)"/><ellipse cx="164.1" cy="116.0" rx="3.7" ry="2.2" transform="rotate(-35 164.1 116.0)" fill="#fff" opacity=".45"/><ellipse cx="170" cy="106" rx="7.1" ry="2.2" transform="rotate(0 170 106)" fill="#3f6b1f"/><ellipse cx="170" cy="106" rx="7.1" ry="2.2" transform="rotate(60 170 106)" fill="#3f6b1f"/><ellipse cx="170" cy="106" rx="7.1" ry="2.2" transform="rotate(120 170 106)" fill="#3f6b1f"/>
+  </symbol>
   <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.7-.4Z"/></symbol>
   <symbol id="i-phone" viewBox="0 0 24 24"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2Z"/></symbol>
 </svg>
@@ -317,7 +325,9 @@ p{margin:0}
 <main>
 
 <!-- ====== ACCUEIL ====== -->
-<section class="hero tartan" id="accueil">
+<section class="hero wood" id="accueil">
+  <svg class="deco deco--tl" aria-hidden="true"><use href="#i-branche"/></svg>
+  <svg class="deco deco--br" aria-hidden="true"><use href="#i-branche"/></svg>
   <div class="wrap">
     <div class="sign paper">
       <p class="sign__kicker">Le Relais des Mamies Gourmandes</p>
@@ -340,7 +350,7 @@ p{margin:0}
 <div class="gingham-strip" role="presentation"></div>
 
 <!-- ====== LES DEUX CHOUCHOUS ====== -->
-<section class="band" id="chouchous">
+<section class="band parchment" id="chouchous">
   <div class="wrap">
     <div class="section-head">
       <div class="row">
@@ -356,7 +366,9 @@ p{margin:0}
 </section>
 
 <!-- ====== LA CARTE ====== -->
-<section class="band tartan" id="carte">
+<section class="band wood" id="carte">
+  <svg class="deco deco--tl" aria-hidden="true"><use href="#i-branche"/></svg>
+  <svg class="deco deco--br" aria-hidden="true"><use href="#i-branche"/></svg>
   <div class="wrap">
     <div class="menu paper">
       <div class="section-head">
@@ -389,7 +401,7 @@ p{margin:0}
 </section>
 
 <!-- ====== LE BAR ====== -->
-<section class="band" id="bar">
+<section class="band parchment" id="bar">
   <div class="wrap split">
     <figure class="photo" style="margin:0">
       <img src="assets/panaches.webp" alt="Trois panachés : un au sirop de kiwi, un banane-kiwi, un à la violette" width="1024" height="740" loading="lazy">
@@ -447,7 +459,9 @@ p{margin:0}
 </dialog>
 
 <!-- ====== LA FAMILLE ====== -->
-<section class="band tartan" id="famille">
+<section class="band wood" id="famille">
+  <svg class="deco deco--tl" aria-hidden="true"><use href="#i-branche"/></svg>
+  <svg class="deco deco--br" aria-hidden="true"><use href="#i-branche"/></svg>
   <div class="wrap family">
     <figure class="polaroid">
       <img src="assets/equipe.webp" alt="Lucien, Isabelle et Mathieu dans la salle du Relais, tables en nappe vichy" width="584" height="438" loading="lazy">

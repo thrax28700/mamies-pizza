@@ -4,15 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Mamies Pizza</title>
-<meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Mamies Pizza au Relais des Mamies Gourmandes, La Chapelotte (18) : pizzas artisanales et tagliatelles, sur place ou à emporter, sur réservation. Bar de village et panachés signature.">
 <link rel="icon" href="assets/mamies.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@500;700&family=Alegreya:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Kaushan+Script&family=Playfair+Display:ital,wght@0,800;0,900;1,700;1,800&display=swap">
 <style>
-/* Mise en page : thème italien — drapeau en accueil, bandeaux vert basilic en toile, parchemin, olives et tomates, nappe vichy.
-   Le contenu se lit toujours sur du papier crème ; les motifs restent autour. */
 :root{
   --verde:#0f5a32;
   --verde-deep:#0a3a21;
@@ -353,11 +350,11 @@ p{margin:0}
     <div class="section-head">
       <div class="row">
         <svg class="olive" aria-hidden="true"><use href="#i-olive"/></svg>
-        <span class="label" style="color:var(--tomato-ink)">Vraies photos, vraies pizzas</span>
+        <span class="label" style="color:var(--tomato-ink)">En photo</span>
         <svg class="olive olive--flip" aria-hidden="true"><use href="#i-olive"/></svg>
       </div>
-      <h2 class="copy" style="display:block"><span class="script" style="font-size:clamp(2.4rem,6vw,3.8rem);color:var(--basil-ink)">Les chouchous de la maison</span></h2>
-      <p>Bien garnies, bien gratinées, servies sur la nappe à carreaux. Voici les deux pizzas qu'on vous recommande les yeux fermés.</p>
+      <h2 class="copy" style="display:block"><span class="script" style="font-size:clamp(2.4rem,6vw,3.8rem);color:var(--basil-ink)">La Bévilloise et la Mainvilloise</span></h2>
+      <p>Photographiées au Relais, telles qu'on vous les sert.</p>
     </div>
     <div class="feats" id="vedettes"></div>
   </div>
@@ -375,7 +372,7 @@ p{margin:0}
           <h2 class="banner">Nos pizzas artisanales</h2>
           <svg class="olive olive--flip" aria-hidden="true"><use href="#i-olive"/></svg>
         </div>
-        <p>Deux prix pour chaque pizza : le vert pour l'emporter, le rouge pour la manger sur place.</p>
+        <p>Prix à emporter en vert, sur place en rouge.</p>
       </div>
       <div class="menu__cols" id="menu-cols"></div>
       <div class="menu__last" id="menu-last" hidden></div>
@@ -391,7 +388,7 @@ p{margin:0}
       <div class="pastas-head">
         <h2 class="banner" style="background:var(--basil)">Nos pâtes italiennes</h2>
         <div class="tricolore" role="presentation"></div>
-        <p style="color:var(--ink-soft)">Trois formules de tagliatelles, sur place ou à emporter.</p>
+        <p style="color:var(--ink-soft)">Tagliatelles, sur place ou à emporter.</p>
       </div>
     </div>
     <div class="pastas" id="pastas"></div>
@@ -402,9 +399,8 @@ p{margin:0}
 <section class="band parchment" id="bar">
   <div class="wrap split split--bar">
     <div class="copy">
-      <p class="eyebrow">AU COMPTOIR</p>
-      <h2>Le bar du village, <span class="script">version Mamies</span></h2>
-      <p>Le café du matin, l'apéro entre voisins, une bière fraîche en attendant les pizzas : Isabelle et Mathieu vous accueillent au comptoir, et on y parle de tout sauf de régime.</p>
+      <h2>Le bar</h2>
+      <p>Café, apéro, bière ou panaché : le bar est ouvert à tous, même si vous ne venez pas manger.</p>
       <div class="posters">
         <article class="poster poster--wide">
           <button class="poster__zoom" type="button" aria-label="Voir l'affiche des 3 panachés signature en grand"><img src="assets/panaches-vignette.webp" data-full="assets/panaches-affiche.webp" alt="Affiche des 3 panachés signature : le Castelpelotois au kiwi, le Chartrain banane-kiwi et le Cauchois à la violette" width="600" height="434" loading="lazy"><span class="poster__hint">Agrandir</span></button>
@@ -431,7 +427,7 @@ p{margin:0}
       <p class="posters__note">Images non contractuelles · cliquez sur une affiche pour la voir en entier</p>
     </div>
     <div class="copy">
-      <p><strong>Nos panachés signature</strong>, à goûter au moins une fois :</p>
+      <p><strong>Nos panachés maison :</strong></p>
       <ul class="panaches">
         <li><i class="dot" style="background:#7cc242"></i><b>Le Castelpelotois</b><span>Sirop de kiwi</span></li>
         <li><i class="dot" style="background:linear-gradient(135deg,#f2d23c 50%,#7cc242 50%)"></i><b>Le Chartrain</b><span>Sirop banane / kiwi</span></li>
@@ -459,12 +455,11 @@ p{margin:0}
       <figcaption>Lucien, Isabelle &amp; Mathieu</figcaption>
     </figure>
     <div class="family__card paper">
-      <p class="eyebrow">UNE AFFAIRE DE FAMILLE</p>
-      <h2>Chez nous, on vous reçoit comme à la maison</h2>
-      <p>Isabelle et Mathieu tiennent la salle et le comptoir, Lucien, le papa de Mathieu, est aux fourneaux. Et chaque pizza de la carte porte le nom d'une ville ou d'un village.</p>
+      <h2>Qui sommes-nous ?</h2>
+      <p>Isabelle et Mathieu au bar et en salle, Lucien, le papa de Mathieu, en cuisine. Les pizzas portent des noms de villes et de villages.</p>
       <div class="mamies">
         <img src="assets/mamies.webp" alt="Gisèle et Jojo, les deux grands-mères" width="96" height="96" loading="lazy">
-        <p>Le Relais porte le nom de nos deux mamies, <strong>Gisèle</strong> et <strong>Jojo</strong>. Leur gourmandise et leur bonne humeur nous ont tout appris.</p>
+        <p>Le Relais porte le nom de nos deux grands-mères, <strong>Gisèle</strong> et <strong>Jojo</strong>.</p>
       </div>
       <div class="quotes">
         <blockquote><p>« Viens me voir, j'ai des choses pour toi. »</p><cite class="label">MAMIE GISÈLE</cite></blockquote>
@@ -479,9 +474,9 @@ p{margin:0}
   <div class="wrap">
     <div class="section-head">
       <div class="reserve-head">
-        <h2>Réservez <span class="script">votre pizza</span></h2>
+        <h2>Commander ou réserver</h2>
         <div class="tricolore" role="presentation"></div>
-        <p>Les pizzas et les pâtes se commandent à l'avance. Un message WhatsApp ou un coup de fil, et on prépare tout pour l'heure qui vous arrange.</p>
+        <p>Pizzas et pâtes sur réservation, par WhatsApp ou par téléphone. Précisez l'heure à laquelle vous passez.</p>
       </div>
     </div>
 
@@ -489,19 +484,19 @@ p{margin:0}
       <div class="c-card paper c-card--wa">
         <span class="label">PAR WHATSAPP</span>
         <span class="num">07 62 77 54 38</span>
-        <p>Écrivez-nous votre commande, le nombre de personnes et l'heure souhaitée.</p>
+        <p>Votre commande, le nombre de personnes et l'heure.</p>
         <a class="btn btn--wa" data-wa="Bonjour, je voudrais réserver / commander : " href="#reserver"><svg aria-hidden="true"><use href="#i-wa"/></svg>Écrire sur WhatsApp</a>
       </div>
       <div class="c-card paper">
         <span class="label">PORTABLE</span>
         <a class="num" href="tel:+33762775438">07 62 77 54 38</a>
-        <p>Appelez-nous pour réserver une table ou commander à emporter.</p>
+        <p>Pour réserver une table ou commander à emporter.</p>
         <a class="btn btn--red" href="tel:+33762775438"><svg aria-hidden="true"><use href="#i-phone"/></svg>Appeler le portable</a>
       </div>
       <div class="c-card paper">
         <span class="label">TÉLÉPHONE FIXE</span>
         <a class="num" href="tel:+33988575967">09 88 57 59 67</a>
-        <p>La ligne du Relais, aux heures d'ouverture.</p>
+        <p>Aux heures d'ouverture.</p>
         <a class="btn btn--red" href="tel:+33988575967"><svg aria-hidden="true"><use href="#i-phone"/></svg>Appeler le fixe</a>
       </div>
     </div>
